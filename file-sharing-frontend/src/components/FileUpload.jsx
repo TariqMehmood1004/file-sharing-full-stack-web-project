@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 const FileUpload = () => {
     const [file, setFile] = useState(null);
@@ -9,6 +10,8 @@ const FileUpload = () => {
     const [error, setError] = useState(null);
     const [expiryTime, setExpiryTime] = useState(null);
     const [showKeys, setShowKeys] = useState('');
+
+    const baseURL = config.apiBaseUrl;
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -41,7 +44,7 @@ const FileUpload = () => {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('http://localhost:5000/upload', formData);
+            const response = await axios.post(`${baseURL}/upload`, formData);
 
             console.log(response.data);
 

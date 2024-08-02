@@ -8,8 +8,13 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const port = 5000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://file-sharing-frontend-ten.vercel.app/'
+}));
+
 app.use(express.static('public'));
+
+
 
 // Ensure the uploads directory exists
 if (!fs.existsSync('uploads')) {

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import config from '../config';
+
 
 const FileDownload = () => {
     const [key, setKey] = useState('');
     const [error, setError] = useState(null);
+    const baseURL = config.apiBaseUrl;
     const [downloadSuccess, setDownloadSuccess] = useState(false);
 
     const handleKeyChange = (e) => {
@@ -17,11 +20,11 @@ const FileDownload = () => {
         }
 
         try {
-            const response = await axios.get(`http://localhost:5000/file-metadata/${key}`);
+            const response = await axios.get(`${baseURL}/file-metadata/${key}`);
             const fileExtension = response.data.extension;
 
             const downloadResponse = await axios({
-                url: `http://localhost:5000/download/${key}`,
+                url: `${baseURL}/download/${key}`,
                 method: 'GET',
                 responseType: 'blob', // Important for file download
             });
