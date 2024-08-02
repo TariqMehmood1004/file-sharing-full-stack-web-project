@@ -1,0 +1,8 @@
+file-sharing-backend\node_modules
+file-sharing-frontend\node_modules
+
+./file-sharing-backend/node_modules
+./file-sharing-frontend/node_modules
+
+file-sharing-backend/node_modules
+file-sharing-frontend/node_modules
