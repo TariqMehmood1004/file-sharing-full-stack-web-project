@@ -2,12 +2,9 @@ const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
-const bodyParser = require('body-parser');
-
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
-
-app.use(bodyParser.urlencoded({ extended: true }));
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 5000;
@@ -17,8 +14,9 @@ app.use(cors({
 }));
 
 app.use(express.static('public'));
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 // Ensure the uploads directory exists
 if (!fs.existsSync('uploads')) {
@@ -151,6 +149,7 @@ const getContentType = (extension) => {
             return 'application/octet-stream';
     }
 };
+
 
 app.post('/webhook', (req, res) => {
     const event = req.body;
