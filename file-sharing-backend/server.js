@@ -18,7 +18,7 @@ app.use(cors({
 
 app.use(express.static('public'));
 
-
+app.use(bodyParser.json());
 
 // Ensure the uploads directory exists
 if (!fs.existsSync('uploads')) {
@@ -151,7 +151,6 @@ const getContentType = (extension) => {
             return 'application/octet-stream';
     }
 };
-
 
 app.post('/webhook', (req, res) => {
     const event = req.body;
